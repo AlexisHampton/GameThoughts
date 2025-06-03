@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 const GameCardBad = ({ game }) => {
     return (
-        <Link className='card bg-error mb-6 hover:shadow-lg transition-all duration-200 border-t-4 border-solid border-warning'>
+        <Link to={`/game/${game._id}`} className='card bg-error mb-6 hover:shadow-lg transition-all duration-200 border-t-4 border-solid border-warning'>
             <div className='card-body flex justify-between'>
                 <div className='flex items-stretch justify-between'>
                     <div>

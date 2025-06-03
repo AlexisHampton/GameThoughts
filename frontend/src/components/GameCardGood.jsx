@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 const GameCardGood = ({ game }) => {
     return (
-        <Link className='card bg-base-100 mb-6 hover:shadow-lg transition-all duration-200 border-t-4 border-solid border-accent'>
+        <Link to={`/game/${game._id}`} className='card bg-base-100 mb-6 hover:shadow-lg transition-all duration-200 border-t-4 border-solid border-accent'>
             <div className='card-body flex justify-between'>
                 <div className='flex items-stretch justify-between'>
                     <div>
