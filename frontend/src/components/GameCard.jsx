@@ -4,17 +4,32 @@ import GameCardGood from './GameCardGood'
 import { useState } from 'react'
 import GameCardBad from './GameCardBad'
 import { useEffect } from 'react'
+import api from '../lib/axios'
+import toast from 'react-hot-toast'
 
 const GameCard = ({ game, setGames }) => {
 
     const [isGood, setGood] = useState(true);
+
+    const handleDelete = async (e, id) => {
+        e.preventDefault();
+        try {
+            if (!window.confirm("Are you sure you want to delete?")) return;
+            await api.delete(`/games/${game._id}`);
+            setGames((prev) => prev.filter(note => note._id !== id));
+            toast.success("Review deleted");
+        } catch (error) {
+            toast.error("Failed to delete review");
+            console.log("Cannot delete review", error);
+        }
+    }
 
     useEffect(() => {
         setGood(game.wouldRecommend);
     }, []);
 
     return (<div>
-        {isGood ? < GameCardGood game={game} /> : <GameCardBad game={game} />}
+        {isGood ? < GameCardGood game={game} handleDelete={handleDelete} /> : <GameCardBad game={game} handleDelete={handleDelete} />}
     </div>
     )
 }

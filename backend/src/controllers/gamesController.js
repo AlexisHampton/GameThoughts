@@ -1,7 +1,7 @@
 import Game from "../models/Game.js"
 
 export async function getAllGames(req, res) {
-    const games = await Game.find().sort({ createNewPostreatedAt: -1 });
+    const games = await Game.find().sort({ createdAt: -1 });
     res.status(200).json(games);
 }
 
